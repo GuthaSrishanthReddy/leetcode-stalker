@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: white;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-container {
+        background-color: #1e1e1e;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        background-color: #2a2a2a;
+        color: white;
+      }
+
+      button {
+        padding: 10px;
+        border-radius: 6px;
+        background-color: #ffa116;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        color: black;
+      }
+
+      button:hover {
+        background-color: #e69500;
+      }
+
+      .error-message {
+        color: red;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .register-link {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .register-link a {
+        color: #ffa116;
+        text-decoration: none;
+      }
+
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+
+      {% if form.errors %}
+        <div class="error-message">
+          Invalid credentials. Please try again.
+        </div>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="register-link">
+        Don't have an account? <a href="{% url 'register' %}">Register here</a>.
+      </div>
+    </div>
+  </body>
+</html>
