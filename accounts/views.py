@@ -121,14 +121,24 @@ def scrape_leetcode_data(username):
     easy = data['data']['matchedUser']['submitStats']['acSubmissionNum'][1]['count']
     medium = data['data']['matchedUser']['submitStats']['acSubmissionNum'][2]['count']
     hard = data['data']['matchedUser']['submitStats']['acSubmissionNum'][3]['count']
-    rating = int(data['data']['userContestRanking']['rating'])
-    top_percentage = data['data']['userContestRanking']['topPercentage']
+    user_contest_ranking = data['data'].get('userContestRanking')
+
+    if user_contest_ranking:
+        rating = user_contest_ranking.get('rating', '--') or '--'
+        top_percentage = user_contest_ranking.get('topPercentage', '--') or '--'
+    else:
+        rating = '--'
+        top_percentage = '--'
     total = easy + medium + hard
+
+    rating = str(rating).strip()
+    rating = list(rating.split('.'))
+
+    rating = str(rating[0])+'.'+str(rating[1])[0:2] if len(rating) > 1 else rating[0]
 
 
     if not total:
         return None
-
     return {
         'username': username,
         'total': total,

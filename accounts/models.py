@@ -10,8 +10,8 @@ class LeetCodeData(models.Model):
     medium = models.IntegerField(default=0)
     hard = models.IntegerField(default=0)
     total = models.IntegerField(default=0)
-    rating = models.IntegerField(default=0)
-    top_percentage = models.FloatField(default=0.0)
+    rating = models.CharField(max_length=100, default='--')
+    top_percentage = models.CharField(max_length=100, default='--')
     # last_updated = models.DateTimeField(auto_now=True)
 
     class Meta:

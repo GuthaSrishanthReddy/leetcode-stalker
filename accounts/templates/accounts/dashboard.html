@@ -156,6 +156,18 @@
         font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 600;          /* Optional: matches LeetCode's dark text */
       }
+
+      .Easy {
+        color: #2ecc71; /* Green */
+      }
+
+      .Medium {
+        color: #f1c40f; /* Yellow */
+      }
+
+      .Hard {
+        color: #e74c3c; /* Red */
+      }
     </style>
   </head>
   <body>
@@ -207,9 +219,9 @@
         <table>
           <tr>
             <th>LeetCode Username</th>
-            <th>Easy</th>
-            <th>Medium</th>
-            <th>Hard</th>
+            <th class="Easy">Easy</th>
+            <th class="Medium">Medium</th>
+            <th class="Hard">Hard</th>
             <th>Total</th>
             <th>Rating</th>
             <th>Top %</th>
@@ -242,9 +254,9 @@
                 </button>
               </form>
             </td>
-            <td>{{ record.easy }}</td>
-            <td>{{ record.medium }}</td>
-            <td>{{ record.hard }}</td>
+            <td class="Easy">{{ record.easy }}</td>
+            <td class="Medium">{{ record.medium }}</td>
+            <td class="Hard">{{ record.hard }}</td>
             <td>{{ record.total }}</td>
             <td>{{ record.rating }}</td>
             <td>{{ record.top_percentage }}%</td>
