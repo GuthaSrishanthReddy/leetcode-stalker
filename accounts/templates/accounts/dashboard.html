@@ -229,7 +229,12 @@
           {% for record in leetcode_data %}
           <tr>
             <td>
-              {{ record.username }}
+              <a
+                href="https://leetcode.com/{{ record.username }}/"
+                target="_blank"
+                style="color: #ffffffff; font-weight: bold; text-decoration: none;"
+                >{{ record.username }}</a
+              >
               <form
                 method="post"
                 action="{% url 'delete_leetcode_user' record.id %}"
