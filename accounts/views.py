@@ -80,7 +80,6 @@ def user_signup(request):
 
 def scrape_leetcode_data(username):
     url = "https://leetcode.com/graphql"
-
     headers = {
         "Content-Type": "application/json",
         "Referer": f"https://leetcode.com/{username}/"
@@ -113,42 +112,43 @@ def scrape_leetcode_data(username):
     variables = {"username": username}
 
     response = requests.post(url, json={"query": query, "variables": variables}, headers=headers)
-
     data = response.json()
-    print(data)
 
-    total = data['data']['matchedUser']['submitStats']['acSubmissionNum'][0]['count']
-    easy = data['data']['matchedUser']['submitStats']['acSubmissionNum'][1]['count']
-    medium = data['data']['matchedUser']['submitStats']['acSubmissionNum'][2]['count']
-    hard = data['data']['matchedUser']['submitStats']['acSubmissionNum'][3]['count']
+
+    if not data.get("data") or data["data"].get("matchedUser") is None:
+        return None
+
+    submit_stats = data['data']['matchedUser']['submitStats']['acSubmissionNum']
+    easy = submit_stats[1]['count']
+    medium = submit_stats[2]['count']
+    hard = submit_stats[3]['count']
+    total = easy + medium + hard
+
     user_contest_ranking = data['data'].get('userContestRanking')
-
     if user_contest_ranking:
         rating = user_contest_ranking.get('rating', '--') or '--'
         top_percentage = user_contest_ranking.get('topPercentage', '--') or '--'
     else:
         rating = '--'
         top_percentage = '--'
-    total = easy + medium + hard
 
     rating = str(rating).strip()
-    rating = list(rating.split('.'))
-
-    rating = str(rating[0])+'.'+str(rating[1])[0:2] if len(rating) > 1 else rating[0]
-
+    rating_parts = rating.split('.')
+    rating = rating_parts[0] + '.' + rating_parts[1][:2] if len(rating_parts) > 1 else rating_parts[0]
 
     if not total:
         return None
+
     return {
         'username': username,
-        'total': total,
         'easy': easy,
         'medium': medium,
         'hard': hard,
+        'total': total,
         'rating': rating,
-        'top_percentage': top_percentage,
-        'total': total
+        'top_percentage': top_percentage
     }
+
 
 
 @login_required
@@ -182,7 +182,7 @@ def dashboard(request):
             else:
                 messages.info(request, f'{target_username} updated successfully.')
         else:
-            messages.error(request, f"Couldn't fetch data for {target_username}.")
+            messages.error(request, f"Couldn't fetch data for {target_username} (user may not exist or the account might be private).")
 
         return redirect('dashboard')
 
