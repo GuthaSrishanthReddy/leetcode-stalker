@@ -1,0 +1,274 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: white;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #1a1a1a;
+        padding: 10px 20px;
+      }
+
+      .navbar-left {
+        display: flex;
+        align-items: center; /* Vertically centers both image and text */
+        gap: 10px;
+      }
+
+      .navbar-left img {
+        height: 40px; /* Adjust image height as needed */
+      }
+
+      .navbar-left span {
+        font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 600; /* Makes it bolder like on LeetCode */
+        font-size: 20px; /* Adjust size as needed */
+      }
+
+      .navbar-right {
+          display: flex;
+          align-items: center; /* Vertically center contents */
+          margin-top: 12px; /* Space between elements */
+          {% comment %} height: 100%;         /* Ensure it stretches to navbar height */ {% endcomment %}
+      }
+
+
+      {% comment %} .navbar-right span {
+        font-size: 16px;
+        gap-bottom: 10px;
+      } {% endcomment %}
+
+      .logout-btn {
+        background-color: #ffa116;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        color: black;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .logout-btn:hover {
+        background-color: #e69500;
+      }
+
+      .add-btn:hover {
+        background-color: #e69500;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        padding: 6px;
+        border-radius: 4px;
+        border: none;
+      }
+
+      button {
+        padding: 6px 10px;
+        border-radius: 4px;
+        background-color: #ffa116;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .messages {
+        color: red;
+      }
+
+      .table-wrapper {
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: #1e1e1e;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #333;
+        text-align: center;
+      }
+
+      th {
+        background-color: #2a2a2a;
+      }
+
+      /* Round corners */
+      table tr:first-child th:first-child {
+        border-top-left-radius: 12px;
+      }
+
+      table tr:first-child th:last-child {
+        border-top-right-radius: 12px;
+      }
+
+      table tr:last-child td:first-child {
+        border-bottom-left-radius: 12px;
+      }
+
+      table tr:last-child td:last-child {
+        border-bottom-right-radius: 12px;
+      }
+
+      .add-update-form-flex-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .greet-user {
+        font-size: 18px;
+        color: #ffa116;
+        font-weight: bold;
+        font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 600;          /* Optional: matches LeetCode's dark text */
+      }
+
+      .Easy {
+        color: #2ecc71; /* Green */
+      }
+
+      .Medium {
+        color: #f1c40f; /* Yellow */
+      }
+
+      .Hard {
+        color: #e74c3c; /* Red */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-left">
+        <img src="{% static 'images/leetcode_logo_rvs.png' %}" alt="Logo" />
+        <span style="align-self: center">LeetCode Stalker</span>
+      </div>
+
+      <span class="greet-user">Hey, {{ request.user.username }}</span>
+
+      <div class="navbar-right">
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button class="logout-btn" type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      {% comment %}
+      <h2>Welcome, {{ request.user.username }}</h2>
+      {% endcomment %}
+
+      <form method="post">
+        {% csrf_token %}
+        <div style="text-align: center" class="add-update-form-flex-div">
+          {% comment %} <label>Enter LeetCode Username:</label> {% endcomment %}
+          <br /><br />
+          <input
+            type="text"
+            name="target_username"
+            placeholder="LeetCode Username"
+            required
+          />
+          <button type="submit" class="add-btn">Add</button>
+        </div>
+      </form>
+
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="table-wrapper">
+        <table>
+          <tr>
+            <th>LeetCode Username</th>
+            <th class="Easy">Easy</th>
+            <th class="Medium">Medium</th>
+            <th class="Hard">Hard</th>
+            <th>Total</th>
+            <th>Rating</th>
+            <th>Top %</th>
+          </tr>
+          {% for record in leetcode_data %}
+          <tr>
+            <td>
+              <a
+                href="https://leetcode.com/{{ record.username }}/"
+                target="_blank"
+                style="color: #ffffffff; font-weight: bold; text-decoration: none;"
+                >{{ record.username }}</a
+              >
+              <form
+                method="post"
+                action="{% url 'delete_leetcode_user' record.id %}"
+                style="display: inline"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  style="
+                    background-color: #e74c3c;
+                    color: white;
+                    border: none;
+                    padding: 2px 6px;
+                    border-radius: 4px;
+                    font-size: 12px;
+                    margin-left: 8px;
+                    cursor: pointer;
+                  "
+                  title="Delete"
+                >
+                  x
+                </button>
+              </form>
+            </td>
+            <td class="Easy">{{ record.easy }}</td>
+            <td class="Medium">{{ record.medium }}</td>
+            <td class="Hard">{{ record.hard }}</td>
+            <td>{{ record.total }}</td>
+            <td>{{ record.rating }}</td>
+            <td>{{ record.top_percentage }}%</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
