@@ -18,29 +18,42 @@ export default function ProfilesTable({ profiles, handleDelete, handleRefresh })
                 <th>Rating</th>
                 <th>Top %</th>
                 <th>Created At</th>
+                <th></th>
               </tr>
             </thead>
 
-            <tbody>
+           <tbody>
               {profiles.map((profile) => (
                 <tr key={profile.id}>
-                  <td className="username"><a target="_blank" rel="noopener noreferrer" href={`https://leetcode.com/${profile.username}`}>{profile.username}</a></td>
-                  <td className="text-center">{profile.easy}</td>
-                  <td className="text-center">{profile.medium}</td>
-                  <td className="text-center">{profile.hard}</td>
-                  <td className="text-center">{profile.total}</td>
-                  <td><div className="text-center w-full">{profile.rating ?? "--"}</div></td>
-                  <td><div className="text-center w-full">{profile.topPercentage ?? " -- "}</div></td>
+                  <td className="username">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`https://leetcode.com/${profile.username}`}
+                    >
+                      {profile.username}
+                    </a>
+                  </td>
 
+                  <td>{profile.easy}</td>
+                  <td>{profile.medium}</td>
+                  <td>{profile.hard}</td>
+                  <td>{profile.total}</td>
+                  <td> <div className="flex justify-center adjust-center"> {profile.rating??'--'}</div> </td>
+                  <td> <div className="flex justify-center adjust-center"> {profile.topPercentage??'--'}</div> </td>
                   <td>{new Date(profile.lastUpdated).toLocaleDateString()}</td>
-                    <button onClick={() => handleRefresh(profile.username)}>⟲</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <button onClick={() => handleDelete(profile.username)}>🗑</button>
-                  
+                  <td className="actions">
+                    <button onClick={() => handleRefresh(profile.username)}>
+                      <span className="icon">⟲</span>
+                    </button>
+                    <button onClick={() => handleDelete(profile.username)}>
+                      <span className="icon">🗑</span>
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
+
           </table>
         </div>
       </div>

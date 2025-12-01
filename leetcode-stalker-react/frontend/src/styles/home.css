@@ -1,0 +1,25 @@
+.home-container {
+  height: calc(100vh - 80px); /* Leaves space for navbar */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #f8fafc;
+  padding: 20px;
+}
+
+.home-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.home-subtitle {
+  font-size: 18px;
+  color: #4b5563;
+  max-width: 400px;
+  line-height: 1.6;
+}

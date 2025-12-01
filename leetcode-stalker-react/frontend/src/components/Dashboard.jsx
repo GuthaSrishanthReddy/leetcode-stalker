@@ -2,8 +2,9 @@ import ProfilesTable from "./ProfilesTable.jsx";
 import { useEffect, useState } from "react";
 import { addProfile, listProfiles, deleteProfile, refreshProfile } from "../api/leetcode.js";
 import AddUser from "./AddUser.jsx";
+import RegisterPage from "./RegisterPage.jsx";
 
-export default function Dashboard() {
+export default function Dashboard({updateView}) {
 
     const [profiles, setProfiles] = useState([]);
     const [error, setError] = useState(null);
@@ -67,6 +68,12 @@ export default function Dashboard() {
     useEffect(() => { loadProfiles()
     }, []);
     if (error) return <div>Error: {error}</div>;
+    
+    const token = localStorage.getItem("token");
+    if (!token) {
+        return <RegisterPage onSuccessfulRegister={() => updateView("login")} />;
+    }
+
 
     return (
         <div className="dashboard">
