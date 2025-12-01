@@ -11,13 +11,19 @@ const authHeaders = () => ({
 export const listProfiles = () => {
   return axios.get(`${API_BASE_URL}/leetcode/home`, authHeaders());
 };
-export const addProfile = (username) => {
+
+export async function addProfile(username, token) {
   return axios.post(
     `${API_BASE_URL}/leetcode/add/${username}`,
-    {}, // body required for POST
-    authHeaders()
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
-};
+}
+
 
 export const deleteProfile = (id) => {
   return axios.delete(`${API_BASE_URL}/leetcode/delete/${id}`, authHeaders());

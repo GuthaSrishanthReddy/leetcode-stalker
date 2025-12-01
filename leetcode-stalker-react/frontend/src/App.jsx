@@ -1,14 +1,15 @@
 import { useState } from "react";
 import LoginPage from "./components/LoginPage.jsx";
 import RegisterPage from "./components/RegisterPage.jsx";
-import Table from "./components/Table.jsx";
 import Dashboard from "./components/Dashboard.jsx";
+import Navbar from "./components/NavBar.jsx";
 
 function App() {
   const [view, setView] = useState("register");
 
   return (
     <div>
+      <Navbar/>
       {view === "login" && (
         <LoginPage onSuccessfulLogin={() => setView("dashboard")} />
       )}

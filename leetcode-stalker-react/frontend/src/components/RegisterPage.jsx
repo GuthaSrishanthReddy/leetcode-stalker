@@ -64,7 +64,6 @@ export default function RegisterPage({ onSuccessfulRegister }) {
           <label>Confirm Password:</label>
           <input
             type="password"
-            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
