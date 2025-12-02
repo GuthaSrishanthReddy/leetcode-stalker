@@ -1,30 +1,23 @@
-import React from "react"; 
-import {useState} from "react";
+import React from "react";
+import "../styles/AddUser.css";
 
 export default function AddUser({ handleAddUser, newUsername, setNewUsername }) {
-
   return (
-    
-    <div className="add-user">
-
-      <div className="cta-box">
-       <label htmlFor="username-input">LeetCode Username:</label>
-       <input
-        type="text"
+    <label className="adduser-wrapper" htmlFor="adduser-input">
+      <input
+        id="adduser-input"
         placeholder="LeetCode Username"
-        required
-        className="cta-input"
-        id="username-input"
+        className="adduser-input"
         value={newUsername}
         onChange={(e) => setNewUsername(e.target.value)}
+        required
       />
-      <button
-        className="cta-button"
-        onClick={handleAddUser}
-      >
-        Add User
+
+      <button className="adduser-btn" onClick={handleAddUser}>
+        <div className="btn-inner">
+          <span className="btn-text"> Add User</span>
+        </div>
       </button>
-</div>
-    </div>
+    </label>
   );
 }

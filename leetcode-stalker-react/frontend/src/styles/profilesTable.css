@@ -80,3 +80,19 @@
   vertical-align: middle;
   text-align: center;
 }
+
+.easy-count{
+  color: #2ecc71;;
+}
+
+.medium-count{
+  color: #f1c40f;
+}
+
+.hard-count{
+  color:  #e74c3c;
+}
+
+.total-count{
+  color : #2007dcbc;
+}

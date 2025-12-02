@@ -4,6 +4,8 @@ import RegisterPage from "./components/RegisterPage.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Navbar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
+import { loginUser } from "./api/auth.js";
+
 
 function App() {
   const [view, setView] = useState(localStorage.getItem("view") || "home");

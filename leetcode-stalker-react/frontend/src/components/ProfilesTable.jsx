@@ -3,6 +3,9 @@ import "../styles/ProfilesTable.css";
 
 
 export default function ProfilesTable({ profiles, handleDelete, handleRefresh }) {
+  if (profiles.length === 0) {
+    return <p>Add a profile to display here!</p>;
+  }
   return (
     <div className="table-wrapper">
       <div className="table-container">
@@ -11,10 +14,10 @@ export default function ProfilesTable({ profiles, handleDelete, handleRefresh })
             <thead>
               <tr>
                 <th>Username</th>
-                <th>Easy</th>
-                <th>Medium</th>
-                <th>Hard</th>
-                <th>Total</th>
+                <th className="easy-count">Easy</th>
+                <th className="medium-count">Medium</th>
+                <th className="hard-count">Hard</th>
+                <th className="total-count">Total</th>
                 <th>Rating</th>
                 <th>Top %</th>
                 <th>Created At</th>
@@ -35,10 +38,10 @@ export default function ProfilesTable({ profiles, handleDelete, handleRefresh })
                     </a>
                   </td>
 
-                  <td>{profile.easy}</td>
-                  <td>{profile.medium}</td>
-                  <td>{profile.hard}</td>
-                  <td>{profile.total}</td>
+                  <td className="easy-count">{profile.easy}</td>
+                  <td className="medium-count">{profile.medium}</td>
+                  <td className="hard-count">{profile.hard}</td>
+                  <td className="total-count">{profile.total}</td>
                   <td> <div className="flex justify-center adjust-center"> {profile.rating??'--'}</div> </td>
                   <td> <div className="flex justify-center adjust-center"> {profile.topPercentage??'--'}</div> </td>
                   <td>{new Date(profile.lastUpdated).toLocaleDateString()}</td>
