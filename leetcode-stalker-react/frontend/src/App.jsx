@@ -6,13 +6,15 @@ import Navbar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 
 function App() {
-  const [view, setView] = useState("home");
+  const [view, setView] = useState(localStorage.getItem("view") || "home");
   const [error, setError] = useState(null);
 
   function updateView(viewName) {
     setView(viewName);
     localStorage.setItem("view", viewName);
   }
+
+  
 
   async function handleLogin(email, password) {
     try {
@@ -33,7 +35,9 @@ function App() {
   }
 
   return (
+
     <>
+      
       <Navbar
         isLoggedIn={!!localStorage.getItem("token")}
         handleLogout={handleLogout}
@@ -42,7 +46,7 @@ function App() {
       />
 
       {view === "home" && <Home />}
-      {view === "login" && <LoginPage onLogin={handleLogin} error={error} />}
+      {view === "login" && <LoginPage onLogin={handleLogin}  error={error} updateView={updateView} />}
       {view === "dashboard" && <Dashboard />}
       {view === "register" && (
         <RegisterPage onSuccessfulRegister={() => updateView("login")} />
