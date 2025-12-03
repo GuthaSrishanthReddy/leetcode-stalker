@@ -1,0 +1,118 @@
+/* container positioned top-right */
+.error-banner-wrapper {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 9999;
+  pointer-events: none; /* let clicks pass through wrapper; inner element will accept pointer events */
+}
+
+/* the visual banner */
+.error-banner {
+  pointer-events: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 260px;
+  max-width: 360px;
+  background: #fff7f7;
+  color: #7f1d1d;
+  border-left: 4px solid #ef4444;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  padding: 12px 12px 12px 14px;
+  border-radius: 10px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  transform-origin: top right;
+  overflow: hidden;
+}
+
+/* icon */
+.error-icon {
+  font-size: 20px;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+/* text block */
+.error-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.error-title {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 2px;
+  color: #7f1d1d;
+}
+
+.error-msg {
+  font-size: 13px;
+  color: #991b1b;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* close button */
+.error-close {
+  all: unset;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: #7f1d1d;
+  padding: 6px;
+  border-radius: 6px;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.error-close:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: scale(1.05);
+}
+
+/* enter animation */
+.error-banner-wrapper.enter .error-banner {
+  animation: slideIn 350ms cubic-bezier(.2,.9,.3,1) forwards;
+}
+
+/* exit animation */
+.error-banner-wrapper.exit .error-banner {
+  animation: slideOut 300ms cubic-bezier(.4,.0,.2,1) forwards;
+}
+
+/* slide in/out keyframes */
+@keyframes slideIn {
+  from {
+    transform: translate3d(12px, -8px, 0) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(12px, -10px, 0) scale(0.98);
+    opacity: 0;
+  }
+}
+
+/* responsive smaller on tiny screens */
+@media (max-width: 420px) {
+  .error-banner {
+    min-width: 220px;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .error-msg {
+    font-size: 12px;
+  }
+}
