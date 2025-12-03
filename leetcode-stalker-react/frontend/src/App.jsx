@@ -4,7 +4,9 @@ import RegisterPage from "./components/RegisterPage.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Navbar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
+import ErrorBanner from "./components/ErrorBanner.jsx";
 import { loginUser } from "./api/auth.js";
+
 
 
 function App() {
@@ -36,8 +38,11 @@ function App() {
     updateView("login");
   }
 
-  return (
 
+  const [globalError, setGlobalError] = useState("")
+
+
+  return (
     <>
       
       <Navbar
@@ -47,9 +52,11 @@ function App() {
         updateView={updateView}
       />
 
+      <ErrorBanner message={error} />
+
       {view === "home" && <Home />}
       {view === "login" && <LoginPage onLogin={handleLogin}  error={error} updateView={updateView} />}
-      {view === "dashboard" && <Dashboard />}
+      {view === "dashboard" && <Dashboard setGlobalError = {setGlobalError} globalError = {globalError}/>}
       {view === "register" && (
         <RegisterPage onSuccessfulRegister={() => updateView("login")} />
       )}

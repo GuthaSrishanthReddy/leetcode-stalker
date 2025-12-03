@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { addProfile, listProfiles, deleteProfile, refreshProfile } from "../api/leetcode.js";
 import AddUser from "./AddUser.jsx";
 import RegisterPage from "./RegisterPage.jsx";
+import ErrorBanner from "./ErrorBanner.jsx";
 
-export default function Dashboard({updateView}) {
+export default function Dashboard({updateView, globalError, setGlobalError}) {
 
     const [profiles, setProfiles] = useState([]);
-    const [error, setError] = useState(null);
     const [newUsername, setNewUsername] = useState("");
 
     async function loadProfiles() {
-            setError(null);
+            setGlobalError(null);
             try {
                 const token = localStorage.getItem('token');
                 const response = await listProfiles(token);
@@ -19,55 +19,75 @@ export default function Dashboard({updateView}) {
                 
             } catch (err) {
                 console.log(err);
-                setError('Failed to fetch profiles');
+                setGlobalError('Failed to fetch profiles');
             }
         }
 
     async function handleAddUser() {
-        if (!newUsername.trim()) return;
+    if (!newUsername.trim()) return;
 
-        setError("");
-
-        try {
+    try {
+        setGlobalError(null);
         const token = localStorage.getItem("token");
-        await addProfile(newUsername.trim(), token);
+        const res = await addProfile(newUsername.trim(), token);
 
-        setNewUsername(""); 
-        await loadProfiles();
-        } catch (err) {
-        console.log(err);
-        setError(err.response?.data?.message || "Failed to add profile");
+        if (!res || res.status >= 400) {
+        console.log("addProfile response:", res);
+        setGlobalError(res?.data?.message || "Failed to add profile");
+        return;
         }
+
+        // SUCCESS
+        setNewUsername("");
+        await loadProfiles();
+    } catch (err) {
+        console.log(err);
+        setGlobalError(err?.response?.data?.message || "Failed to add profile");
     }
+    }
+
+
+
 
     async function handleDelete(profileId) {
-        setError(null);
         try {
-            const token = localStorage.getItem('token');
+            setGlobalError(null);
+            const token = localStorage.getItem("token");
+
             await deleteProfile(profileId, token);
             await loadProfiles();
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
-            setError('Failed to delete profile');
+            setGlobalError(err?.response?.data?.message || "Failed to delete profile");
         }
     }
+
+
     async function handleRefresh(profileId) {
-        setError(null); 
         try {
-            const token = localStorage.getItem('token');
+            setGlobalError(null);
+            const token = localStorage.getItem("token");
+
             await refreshProfile(profileId, token);
             await loadProfiles();
         } catch (err) {
             console.log(err);
-            setError('Failed to refresh profile');
+            setGlobalError(err?.response?.data?.message || "Failed to refresh profile");
         }
     }
 
 
+
     useEffect(() => { loadProfiles()
     }, []);
-    if (error) return <div>Error: {error}</div>;
+
+    useEffect(() => {
+        if (globalError) {
+            const timer = setTimeout(() => setGlobalError(null), 4000);
+            return () => clearTimeout(timer);
+        }
+        }, [globalError]);
+
     
     const token = localStorage.getItem("token");
     if (!token) {
@@ -76,14 +96,23 @@ export default function Dashboard({updateView}) {
 
 
     return (
-        <div className="dashboard">
-            <AddUser
-                newUsername={newUsername}
-                setNewUsername={setNewUsername}
-                handleAddUser={handleAddUser}
-            />
-            <ProfilesTable profiles={profiles} handleDelete={handleDelete} handleRefresh={handleRefresh} />
-        </div>
+        <>
+            
+
+            <div className="dashboard" style={{
+                    background: "#f9fafb"}}>
+
+                <AddUser
+                    newUsername={newUsername}
+                    setNewUsername={setNewUsername}
+                    handleAddUser={handleAddUser}
+                />
+
+                {globalError && <ErrorBanner message={globalError}/>}
+
+                <ProfilesTable profiles={profiles} handleDelete={handleDelete} handleRefresh={handleRefresh} />
+            </div>
+        </>
     );
 
 
