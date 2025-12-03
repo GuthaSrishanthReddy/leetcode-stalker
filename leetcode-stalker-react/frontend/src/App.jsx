@@ -58,7 +58,7 @@ function App() {
       {view === "login" && <LoginPage onLogin={handleLogin}  error={error} updateView={updateView} />}
       {view === "dashboard" && <Dashboard setGlobalError = {setGlobalError} globalError = {globalError}/>}
       {view === "register" && (
-        <RegisterPage onSuccessfulRegister={() => updateView("login")} />
+        <RegisterPage onSuccessfulRegister={() => updateView("login")} updateView={updateView} />
       )}
     </>
   );

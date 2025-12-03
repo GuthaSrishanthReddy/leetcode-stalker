@@ -1,0 +1,86 @@
+.register-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
+.register-container {
+  margin: auto;
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.register-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.input-wrapper {
+  margin-top: 16px;
+}
+
+.register-input {
+  margin-top: 4px;
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.password-row {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password {
+  margin-left: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.toggle-password:hover {
+  color: #111827;
+}
+
+.register-btn-wrapper {
+  margin-top: 24px;
+}
+
+.register-btn {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.register-btn:hover {
+  background: #4338ca;
+}
+
+.have-account-wrapper {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.have-account-wrapper a {
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.have-account-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #dc2626;
+  margin-top: 8px;
+}
