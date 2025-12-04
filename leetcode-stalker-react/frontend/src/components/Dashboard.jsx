@@ -78,7 +78,12 @@ export default function Dashboard({updateView, globalError, setGlobalError}) {
 
 
 
-    useEffect(() => { loadProfiles()
+    useEffect(() => { 
+        loadProfiles();
+        const interval = setInterval(()=>{
+            loadProfiles();
+        }, 10000);
+        return ()=>clearInterval(interval);
     }, []);
 
     useEffect(() => {
