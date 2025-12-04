@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/ProfilesTable.css";
+import Loading from "./Loading";
 
 
 export default function ProfilesTable({ profiles, handleDelete, handleRefresh }) {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(()=>{
+    if(profiles.length > 0){
+      setIsLoading(false);
+    }
+  }, [profiles])
+
+  if(isLoading){
+    return <><Loading message={"Fetching accounts "}/></>
+  }
+  
   if (profiles.length === 0) {
+    
     return <p>Add a profile to display here!</p>;
   }
+
   return (
     <div className="table-wrapper">
       <div className="table-container">

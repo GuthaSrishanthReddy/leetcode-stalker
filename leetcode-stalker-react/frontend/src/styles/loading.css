@@ -1,0 +1,30 @@
+.lc-loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px; /* adjust as needed */
+  width: 100%;
+}
+
+.lc-cube {
+  width: 28px;
+  height: 28px;
+  background-color: #ffa500;  /* LeetCode gold color */
+  border-radius: 4px;
+  animation: lcCubeRotate 1s infinite ease-in-out;
+}
+
+/* LeetCode-like pulsing rotation */
+@keyframes lcCubeRotate {
+  0% {
+    transform: perspective(100px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(100px) rotateX(180deg) rotateY(0deg);
+    background-color: #ffb733;
+  }
+  100% {
+    transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+    background-color: #ffa500;
+  }
+}
