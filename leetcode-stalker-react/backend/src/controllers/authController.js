@@ -23,7 +23,7 @@ export async function register(req, res) {
     },
   });
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
+    expiresIn: "1d",
   });
   res.json({ token, user: { id: user.id, email: user.email } });
 }
@@ -43,7 +43,7 @@ export async function login(req, res) {
   }
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
+    expiresIn: "1d",
   });
   res.json({ token, user: { id: user.id, email: user.email } });
 }

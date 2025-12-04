@@ -10,7 +10,7 @@
   gap: 12px;
   align-items: center;
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px #f6a80051;
 }
 
 /* Input Field */
@@ -25,8 +25,7 @@
 }
 
 .adduser-input:focus {
-  border-color: #b1a826;
-  box-shadow: 0 0 0 3px rgba(135, 158, 60, 0.25);
+  /* box-shadow: 0 0 0 3px rgba(135, 158, 60, 0.25); */
 }
 
 /* Button */
