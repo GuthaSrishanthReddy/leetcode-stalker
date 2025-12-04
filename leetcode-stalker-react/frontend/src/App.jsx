@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import LoginPage from "./components/LoginPage.jsx";
 import RegisterPage from "./components/RegisterPage.jsx";
 import Dashboard from "./components/Dashboard.jsx";
@@ -6,54 +6,36 @@ import Navbar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 import ErrorBanner from "./components/ErrorBanner.jsx";
 import { loginUser } from "./api/auth.js";
-import {jwtDecode} from 'jwt-decode'
-
-
+import "./app.css"
 
 function App() {
   const [view, setView] = useState(localStorage.getItem("view") || "home");
-  const [error, setError] = useState(null);
+  const [globalError, setGlobalError] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+  // THEME
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-    const decoded = jwtDecode(token);
-    const expMs = decoded.exp * 1000;
-    const now = Date.now();
-    const timeLeft = expMs - now;
-
-    if (timeLeft <= 0) {
-      handleLogout();
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      handleLogout();
-      alert("Session Expired!");
-    }, timeLeft);
-
-    return () => clearTimeout(timer);
-  }, [localStorage.getItem("token")]);
+  function toggleTheme() {
+    const next = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    localStorage.setItem("theme", next);
+  }
 
   function updateView(viewName) {
     setView(viewName);
     localStorage.setItem("view", viewName);
   }
 
-
   async function handleLogin(email, password) {
     try {
-      setError(null);
+      setGlobalError(null);
       const response = await loginUser(email, password);
       const { token } = response.data;
 
       localStorage.setItem("token", token);
-
       updateView("dashboard");
-
     } catch (err) {
-      setError(err?.response?.data?.message || "Login failed");
+      setGlobalError(err?.response?.data?.message || "Login failed");
     }
   }
 
@@ -62,32 +44,44 @@ function App() {
     updateView("login");
   }
 
-
-  const [globalError, setGlobalError] = useState("")
-
-
   return (
-    <>
-      
+    <div className={theme}>
       <Navbar
         isLoggedIn={!!localStorage.getItem("token")}
         handleLogout={handleLogout}
         handleLogin={handleLogin}
         updateView={updateView}
+        toggleTheme={toggleTheme}
+        theme={theme}
       />
 
-      <ErrorBanner message={error} />
+      <ErrorBanner message={globalError} />
 
       {view === "home" && <Home />}
-      {view === "login" && <LoginPage onLogin={handleLogin}  error={error} updateView={updateView} />}
-      {view === "dashboard" && <Dashboard setGlobalError = {setGlobalError} globalError = {globalError}/>}
-      {view === "register" && (
-        <RegisterPage onSuccessfulRegister={() => updateView("login")} updateView={updateView} />
+      {view === "login" && (
+        <LoginPage
+          onLogin={handleLogin}
+          error={globalError}
+          updateView={updateView}
+        />
       )}
-    </>
+
+      {view === "dashboard" && (
+        <Dashboard
+          setGlobalError={setGlobalError}
+          globalError={globalError}
+          updateView={updateView}
+        />
+      )}
+
+      {view === "register" && (
+        <RegisterPage
+          onSuccessfulRegister={() => updateView("login")}
+          updateView={updateView}
+        />
+      )}
+    </div>
   );
 }
-
-
 
 export default App;

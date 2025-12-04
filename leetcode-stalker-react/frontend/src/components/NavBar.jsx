@@ -3,11 +3,13 @@ import logo from "../assets/LeetCode_logo.png";
 import Logout from "./logout.jsx";
 
 export default function Navbar({
-  isLoggedIn, 
-  handleLogout, 
+  isLoggedIn,
+  handleLogout,
   handleLogin,
-  updateView
-}){
+  updateView,
+  toggleTheme,
+  theme
+}) {
   return (
     <header className="navbar-header">
       <nav className="navbar-container">
@@ -66,6 +68,13 @@ export default function Navbar({
         </div>
         
         <div className="navbar-right">
+          <button 
+            onClick={toggleTheme}
+            className="theme-toggle"
+          >
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+
           <Logout handleLogin={handleLogin} handleLogout={handleLogout} token={isLoggedIn} updateView={updateView} />
         </div>
       </nav>
