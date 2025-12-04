@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "../styles/registerPage.css";
+// import { registerUser } from "../api/auth.js";
+import Silk from './Silk';
+
 
 function RegisterPage({ onSuccessfulRegister, updateView }) {
   const [email, setEmail] = useState("");
@@ -28,7 +31,26 @@ function RegisterPage({ onSuccessfulRegister, updateView }) {
   }
 
   return (
-    <div className="register-wrapper">
+    <div className="register-wrapper" style={{
+      position: "relative",
+      width: "100%",
+      height: "100vh",
+      overflow: "hidden",
+    }}>
+
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        zIndex: -1,
+      }}>
+        <Silk
+          speed={5}
+          scale={1}
+          color="#7B7481"
+          noiseIntensity={1.5}
+          rotation={0}
+        />
+      </div>
       <div className="register-container">
 
         <h1 className="register-title">Create Account</h1>
@@ -48,22 +70,25 @@ function RegisterPage({ onSuccessfulRegister, updateView }) {
 
           <div className="input-wrapper">
             <div className="password-row">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="register-input"
-              />
+              <div className="password-input-wrapper">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="register-input password-field"
+                />
 
-              <button
-                type="button"
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+
             </div>
           </div>
 
@@ -90,6 +115,7 @@ function RegisterPage({ onSuccessfulRegister, updateView }) {
         <div className="have-account-wrapper">
           Already have an account?
           <a
+            className="login-title"
             onClick={(e) => {
               e.preventDefault();
               updateView("login");

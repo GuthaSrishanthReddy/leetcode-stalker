@@ -1,86 +1,129 @@
+/* Wrapper for full-screen background */
 .register-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  min-height: 100vh;
-  background: #f9fafb;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Glassmorphism register card */
 .register-container {
-  margin: auto;
-  width: 100%;
-  max-width: 420px;
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 420px;
+  padding: 32px;
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  color: #e5e5e5;
 }
 
+/* Title styles */
 .register-title {
-  font-size: 1.4rem;
+  font-size: 28px;
   font-weight: 600;
-  color: #374151;
+  color: #ffa116; /* LeetCode orange */
+  margin-bottom: 24px;
+  text-align: center;
 }
 
+/* Input wrapper */
 .input-wrapper {
-  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
+/* Input styling */
 .register-input {
-  margin-top: 4px;
   width: 100%;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 8px;
+  padding: 12px;
+  border-radius: 8px;
+
+  background: #1a1a1a;
+  color: #ffffff;
+
+  border: 1px solid #333;
+  outline: none;
+  font-size: 15px;
+
+  transition: border 0.2s ease;
 }
 
+.register-input:focus {
+  border: 1px solid #ffa116;
+}
+
+/* Password row */
 .password-row {
   display: flex;
   align-items: center;
 }
 
+/* Show/Hide Password button */
 .toggle-password {
-  margin-left: 8px;
   background: none;
   border: none;
+  color: #ffa116;
+  margin-left: 10px;
   cursor: pointer;
-  color: #6b7280;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 .toggle-password:hover {
-  color: #111827;
+  text-decoration: underline;
 }
 
+/* Submit button */
 .register-btn-wrapper {
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 .register-btn {
   width: 100%;
-  background: #4f46e5;
-  color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
+
+  background: #ffa116;
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
+
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .register-btn:hover {
-  background: #4338ca;
+  background: #ffb84a;
 }
 
-.have-account-wrapper {
-  margin-top: 16px;
-  text-align: center;
-}
-
-.have-account-wrapper a {
-  color: #2563eb;
-  cursor: pointer;
-}
-
-.have-account-wrapper a:hover {
-  text-decoration: underline;
-}
-
+/* Error message */
 .error-message {
-  color: #dc2626;
-  margin-top: 8px;
+  margin-top: 12px;
+  text-align: center;
+  color: #ff4d4d;
+  font-size: 14px;
+}
+
+/* Login link */
+.have-account-wrapper {
+  text-align: center;
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.login-title {
+  color: #ffa116;
+  font-size: medium;
+  cursor: pointer;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.login-title:hover {
+  text-decoration: underline;
 }

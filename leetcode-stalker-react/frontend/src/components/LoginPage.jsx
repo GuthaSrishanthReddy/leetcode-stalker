@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import "../styles/loginPage.css";
+import Silk from "./Silk";
 
 function LoginPage({ onLogin, error, updateView }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  function togglePasswordVisibility() {
-    setShowPassword(!showPassword);
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,63 +14,61 @@ function LoginPage({ onLogin, error, updateView }) {
 
   return (
     <div className="login-wrapper">
+
+      {/* Silk Background */}
+      <div className="silk-bg">
+        <Silk
+          speed={5}
+          scale={1}
+          color="#7B7481"
+          noiseIntensity={1.5}
+          rotation={0}
+        />
+      </div>
+
+      {/* Glass Card */}
       <div className="login-container">
 
         <h1 className="login-title">Login</h1>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit}>
 
-          <div className="input-wrapper">
+          {/* Email */}
+          <input
+            type="email"
+            className="login-input"
+            placeholder="example@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          {/* Password with Show/Hide button */}
+          <div className="password-input-wrapper">
             <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="login-input"
+              type={showPassword ? "text" : "password"}
+              className="login-input password-field"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
 
-          <div className="input-wrapper">
-            <div className="password-row">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="login-input"
-              />
-
-              <button
-                type="button"
-                className="toggle-password"
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
-            </div>
-          </div>
-
-          <div className="login-btn-wrapper">
-            <button type="submit" className="login-btn">
-              Login
+            <button
+              type="button"
+              className="password-toggle-btn"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
             </button>
           </div>
+
+          <button className="login-btn" type="submit">Login</button>
 
           {error && <div className="error-message">{error}</div>}
         </form>
 
-        <div className="forgot-password-wrapper">
-          Don't have an account?
-          <a
-            onClick={(e) => {
-              e.preventDefault();
-              updateView("register");
-            }}
-          >
-            Register here.
-          </a>
+        <div className="switch-page">
+          Don’t have an account?
+          <a onClick={() => updateView("register")}> Register here.</a>
         </div>
       </div>
     </div>

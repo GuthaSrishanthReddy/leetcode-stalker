@@ -1,92 +1,134 @@
+/* Wrapper */
 .login-wrapper {
-  display: flex;
-  min-height: 100vh;
-  background: #f9fafb;
-}
-
-.login-container {
-  margin: auto;
+  position: relative;
   width: 100%;
-  max-width: 420px;
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+  height: 100vh;
+  overflow: hidden;
 
-.login-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #374151;
-}
-
-.input-wrapper {
-  margin-top: 16px;
-}
-
-.login-input {
-  margin-top: 4px;
-  width: 100%;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 8px;
-}
-
-.password-row {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.toggle-password {
-  margin-left: 8px;
+/* Silk Background */
+.silk-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Glass Card */
+.login-container {
+  width: 420px;
+  padding: 32px;
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  color: #e5e5e5;
+}
+
+/* Title */
+.login-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffa116;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Input styling (same as register) */
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: white;
+  font-size: 15px;
+  margin-bottom: 16px;
+  transition: border 0.2s ease;
+}
+
+.login-input:focus {
+  border: 1px solid #ffa116;
+}
+
+/* Password wrapper - same as Register Page */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* PASSWORD FIELD FIX */
+.password-field {
+  padding-right: 70px !important;
+  height: 46px; 
+  line-height: 46px;
+}
+
+/* Show/Hide button - centered */
+.password-toggle-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
   background: none;
   border: none;
   cursor: pointer;
-  color: #6b7280;
-  font-size: 0.9rem;
+
+  color: #ffa116;
+  font-size: 14px;
+  font-weight: 500;
+
+  padding: 0;
+  line-height: 1;
 }
 
-.toggle-password:hover {
-  color: #111827;
-}
-
-.login-btn-wrapper {
-  margin-top: 24px;
-}
-
+/* Login button */
 .login-btn {
   width: 100%;
-  background: #4f46e5;
-  color: white;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
+
+  background: #ffa116;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .login-btn:hover {
-  background: #4338ca;
+  background: #ffb84a;
 }
 
-.forgot-password-wrapper {
-  margin-top: 16px;
+/* Error */
+.error-message {
+  margin-top: 12px;
+  color: #ff4d4d;
   text-align: center;
 }
 
-.forgot-password {
-  color: #2563eb;
-  background: none;
-  border: none;
+/* Register link */
+.switch-page {
+  margin-top: 20px;
+  text-align: center;
+  color: #ddd;
+}
+
+.switch-page a {
+  color: #ffa116;
+  font-weight: 600;
+  margin-left: 6px;
   cursor: pointer;
 }
 
-.forgot-password:hover {
+.switch-page a:hover {
   text-decoration: underline;
-}
-
-.alert-wrapper {
-  margin-top: 24px;
-}
-
-.error-message {
-  color: #dc2626;
-  margin-top: 8px;
 }
