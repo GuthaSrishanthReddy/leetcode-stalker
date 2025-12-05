@@ -64,9 +64,11 @@ export default function ProfilesTable({ profiles, handleDelete, handleRefresh })
                     <button onClick={() => handleRefresh(profile.username)}>
                       <span className="icon">⟲</span>
                     </button>
-                    <button onClick={() => handleDelete(profile.username)}>
-                      <span className="icon">🗑</span>
-                    </button>
+                    <div className="remove-button-container">
+                      <button className="remove-button" onClick={() => handleDelete(profile.username)}>🧹
+                      </button>
+                      <span className="remove-button-hover-text"> delete entry </span>
+                    </div>
                   </td>
                 </tr>
               ))}

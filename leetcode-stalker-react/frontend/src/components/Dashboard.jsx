@@ -102,10 +102,14 @@ export default function Dashboard({updateView, globalError, setGlobalError}) {
 
     return (
         <>
-            
 
             <div className="dashboard" style={{
-                    background: "#f9fafb"}}>
+                background: 'var(--dashboard-bg) !important',
+                height: '100vh',
+                width: '100vw',
+                margin: 0,
+                padding: 0
+            }}>
 
                 <AddUser
                     newUsername={newUsername}

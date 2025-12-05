@@ -1,18 +1,18 @@
 /* Make navbar small and compact */
 .navbar-header {
-  width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  background: var(--nav-bg) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--nav-text) !important;
 }
-
 /* Main nav container */
 .navbar-container {
-  max-width: 1200px;
+  max-width:100%;
   margin: 0 auto;
   padding: 0.6rem 1rem;   /* reduce padding → smaller height */
   display: flex;
   justify-content: space-between;
   align-items: center;    /* vertically centers content */
+  border: solid 1px var(--nav-border) !important;
 }
 
 /* Left side: Logo + Name */
@@ -35,15 +35,13 @@
 }
 
 .nav-link {
-  color: #333;
-  cursor: pointer;
-  font-size: 15px;
-  text-decoration: none;
+  color: var(--nav-text) !important;
 }
 
 .nav-link:hover {
-  color: #007bff;
+  color: #3b82f6; /* highlight stays blue */
 }
+
 
 /* Right side (logout/login button) */
 .navbar-right {
@@ -103,7 +101,5 @@
 }
 
 .navbar-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #3b82f6; /* blue like your design */
+  color: var(--nav-text) !important;
 }

@@ -79,6 +79,7 @@
 .styled-table th {
   vertical-align: middle;
   text-align: center;
+  background-color: var(--tableheader-bg) !important;
 }
 
 .easy-count{
@@ -96,3 +97,44 @@
 .total-count{
   color : #2007dcbc;
 }
+
+.remove-button-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Button styling */
+.remove-button {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Hover text (initially hidden) */
+.remove-button-hover-text {
+  display: none;
+  position: absolute;
+  left: 110%;              /* place to the right of button */
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show text on hover */
+.remove-button-container:hover .remove-button-hover-text {
+  display: block;
+  opacity: 1;
+}
+

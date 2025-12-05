@@ -53,6 +53,7 @@ function App() {
         updateView={updateView}
         toggleTheme={toggleTheme}
         theme={theme}
+        view={view}
       />
 
       <ErrorBanner message={globalError} />
@@ -63,6 +64,7 @@ function App() {
           onLogin={handleLogin}
           error={globalError}
           updateView={updateView}
+          theme={theme}
         />
       )}
 
@@ -71,6 +73,7 @@ function App() {
           setGlobalError={setGlobalError}
           globalError={globalError}
           updateView={updateView}
+          theme={theme}
         />
       )}
 
@@ -78,6 +81,7 @@ function App() {
         <RegisterPage
           onSuccessfulRegister={() => updateView("login")}
           updateView={updateView}
+          theme={theme}
         />
       )}
     </div>

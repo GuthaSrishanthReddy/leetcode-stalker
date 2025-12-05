@@ -1,14 +1,49 @@
 .light {
-  --bg: #ffffff;
   --text: #000000;
   --card: #f1f5f9;
+  --nav-bg: #f6a80037;
+  --nav-text: #000000;
+  --nav-border: #000000;
+  --card-bg: #f9fafb;
+  --border-color: #e5e7eb;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --placeholder: #9ca3af;
+  --text: #111827;
+
+  --button-bg: #000000;
+  --button-text: #ffffff;
+  --button-hover-bg: #222222;
+  --dashboard-bg:#f9fafb;
+  --tableheader-bg:#f9fafb;
+
+  /* Accent shadow used in your old code (#f6a80051) */
+  --accent-shadow: #f6a80051;
+
 }
 
 
 .dark {
-  --bg: #0f172a;
   --text: #f8fafc;
   --card: #1e293b;
+  --nav-bg: #1a1a1adf;
+  --nav-text: #f8fafc;
+  --nav-border: #000000;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  --input-bg: #0f172a;
+  --input-border: #475569;
+  --placeholder: #94a3b8;
+  --text: #f1f5f9;
+  --dashboard-bg:#1e293b;
+  --tableheader-bg:#1e293b;
+
+  --button-bg: #f1f5f9;
+  --button-text: #000000;
+  --button-hover-bg: #e2e8f0;
+
+  /* Softer, darker glow */
+  --accent-shadow: rgba(203, 213, 225, 0.15);
 }
 
 

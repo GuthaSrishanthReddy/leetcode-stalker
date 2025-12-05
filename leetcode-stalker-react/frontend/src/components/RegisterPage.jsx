@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "../styles/registerPage.css";
 // import { registerUser } from "../api/auth.js";
 import Silk from './Silk';
+import { GridScan } from "./GridScan";
 
 
-function RegisterPage({ onSuccessfulRegister, updateView }) {
+function RegisterPage({ onSuccessfulRegister, updateView, theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,14 +43,32 @@ function RegisterPage({ onSuccessfulRegister, updateView }) {
         position: "absolute",
         inset: 0,
         zIndex: -1,
+
       }}>
+      {theme === "dark"?
         <Silk
+          key={theme}   // <- forces full remount
           speed={5}
           scale={1}
           color="#7B7481"
           noiseIntensity={1.5}
           rotation={0}
+        /> :
+        <GridScan
+          sensitivity={0.55}
+          lineThickness={1}
+          linesColor="#392e4e"
+          gridScale={0.1}
+          scanColor="#FF9FFC"
+          scanOpacity={0.4}
+          enablePost
+          bloomIntensity={0.6}
+          chromaticAberration={0.002}
+          noiseIntensity={0.01}
         />
+      } 
+        
+        
       </div>
       <div className="register-container">
 

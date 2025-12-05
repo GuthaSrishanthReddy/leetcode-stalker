@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../styles/loginPage.css";
 import Silk from "./Silk";
+import { GridScan } from "./GridScan";
 
-function LoginPage({ onLogin, error, updateView }) {
+function LoginPage({ onLogin, error, updateView, theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -17,13 +18,29 @@ function LoginPage({ onLogin, error, updateView }) {
 
       {/* Silk Background */}
       <div className="silk-bg">
+        {theme === "dark"?
         <Silk
+          key={theme}   // <- forces full remount
           speed={5}
           scale={1}
           color="#7B7481"
           noiseIntensity={1.5}
           rotation={0}
+        /> :
+        <GridScan
+          sensitivity={0.55}
+          lineThickness={1}
+          linesColor="#ffffff"
+          gridScale={0.1}
+          scanColor="#000000"
+          scanOpacity={0.4}
+          enablePost
+          bloomIntensity={0.6}
+          chromaticAberration={0.002}
+          noiseIntensity={0.01}
         />
+      }
+
       </div>
 
       {/* Glass Card */}
