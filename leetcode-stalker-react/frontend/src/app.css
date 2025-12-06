@@ -1,4 +1,5 @@
 .light {
+
   --text: #000000;
   --card: #f1f5f9;
   --nav-bg: #f6a80037;
@@ -6,20 +7,22 @@
   --nav-border: #000000;
   --card-bg: #f9fafb;
   --border-color: #e5e7eb;
-  --input-bg: #ffffff;
+  --profilestable-bg: #f9fafb;
+  --input-bg: #f9fafb;
   --input-border: #d1d5db;
   --placeholder: #9ca3af;
-  --text: #111827;
-
+  --home-bg: #f9fafb;
+  --home-title: #111827;
+  --home-subtitle: #4b5563;
+  --adduser-bg:#f9fafb;
+  
   --button-bg: #000000;
   --button-text: #ffffff;
   --button-hover-bg: #222222;
   --dashboard-bg:#f9fafb;
   --tableheader-bg:#f9fafb;
 
-  /* Accent shadow used in your old code (#f6a80051) */
   --accent-shadow: #f6a80051;
-
 }
 
 
@@ -32,31 +35,34 @@
   --card-bg: #1e293b;
   --border-color: #334155;
   --input-bg: #0f172a;
+  --profilestable-bg: #1e293b;
   --input-border: #475569;
   --placeholder: #94a3b8;
-  --text: #f1f5f9;
   --dashboard-bg:#1e293b;
   --tableheader-bg:#1e293b;
+  --home-bg: #0f172a;
+  --home-title: #f1f5f9;
+  --home-subtitle: #94a3b8;
+  --adduser-bg:#1e293b;
 
   --button-bg: #f1f5f9;
   --button-text: #000000;
   --button-hover-bg: #e2e8f0;
 
-  /* Softer, darker glow */
   --accent-shadow: rgba(203, 213, 225, 0.15);
 }
 
 
-.light, .dark {
+
+/* .light, .dark {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
   transition: background 0.3s ease, color 0.3s ease;
-}
+} */
 
 /* Cards, tables, login containers */
 .card,
-.login-container,
 .table-wrapper {
   background: var(--card);
   color: var(--text);

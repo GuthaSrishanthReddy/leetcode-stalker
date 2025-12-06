@@ -12,22 +12,24 @@ export default function AddUser({ handleAddUser, newUsername, setNewUsername }) 
   }
 
   return (
-    <label className="adduser-wrapper" htmlFor="adduser-input">
-      <input
-        id="adduser-input"
-        placeholder="LeetCode Username"
-        className="adduser-input"
-        value={newUsername}
-        onKeyDown={handleEnter}
-        onChange={(e) => setNewUsername(e.target.value)}
-        required
-      />
+    <div className="adduser-container">
+        <div className="adduser-wrapper" htmlFor="adduser-input">
+          <input
+            id="adduser-input"
+            placeholder="LeetCode Username"
+            className="adduser-input"
+            value={newUsername}
+            onKeyDown={handleEnter}
+            onChange={(e) => setNewUsername(e.target.value)}
+            required
+          />
 
-      <button className="adduser-btn" onClick={handleAddUser} ref={button_ref}>
-        <div className="btn-inner">
-          <span className="btn-text"> Add User</span>
+          <button className="adduser-btn" onClick={handleAddUser} ref={button_ref}>
+            <div className="btn-inner">
+              <span className="btn-text"> Add User</span>
+            </div>
+          </button>
         </div>
-      </button>
-    </label>
+    </div>
   );
 }

@@ -1,9 +1,13 @@
+.adduser-container{
+  background: var(--adduser-bg) !important;
+}
+
 /* Wrapper box */
 .adduser-wrapper {
-  margin: 30px auto;
+  margin:30px auto;
   width: 100%;
   max-width: 650px;
-  background: var(--card-bg);
+  background-color: var(--adduser-bg) !important;
   border: 1px solid var(--border-color);
   padding: 14px 18px;
   display: flex;

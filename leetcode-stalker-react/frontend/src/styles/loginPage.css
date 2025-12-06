@@ -8,7 +8,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: transparent !important;
 }
+
 
 /* Silk Background */
 .silk-bg {
@@ -23,8 +26,7 @@
   padding: 32px;
   border-radius: 12px;
 
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(15px);
 
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   color: #e5e5e5;
@@ -44,7 +46,7 @@
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  background: #1a1a1a;
+  /* background: #1a1a1a; */
   border: 1px solid #333;
   color: white;
   font-size: 15px;

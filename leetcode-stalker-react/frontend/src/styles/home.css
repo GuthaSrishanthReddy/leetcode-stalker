@@ -6,20 +6,20 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #f8fafc;
+  background: var(--home-bg) !important;
   padding: 20px;
 }
 
 .home-title {
   font-size: 48px;
   font-weight: 700;
-  color: #111827;
+  color: var(--home-title) !important;
   margin-bottom: 10px;
 }
 
 .home-subtitle {
   font-size: 18px;
-  color: #4b5563;
+  color: var(--home-subtitle) !important;
   max-width: 400px;
   line-height: 1.6;
 }

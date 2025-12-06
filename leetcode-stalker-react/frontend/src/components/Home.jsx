@@ -2,30 +2,8 @@ import Silk from "./Silk";
 
 export default function Home() {
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-    >
-      {/* Silk Background */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: -1,
-        }}
-      >
-        <Silk
-          speed={5}
-          scale={1}
-          color="#7B7481"
-          noiseIntensity={1.5}
-          rotation={0}
-        />
-      </div>
+    <div>
+      
 
       {/* Page Content */}
       <div

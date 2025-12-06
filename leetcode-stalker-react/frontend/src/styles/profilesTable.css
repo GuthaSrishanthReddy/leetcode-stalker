@@ -6,7 +6,7 @@
 .table-wrapper {
   width: 100%;
   min-height: 800px;
-  background: #f9fafb;
+  background: var(--profilestable-bg) !important;
 }
 
 .table-container {

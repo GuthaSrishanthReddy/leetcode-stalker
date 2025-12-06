@@ -20,6 +20,7 @@ function LoginPage({ onLogin, error, updateView, theme }) {
       <div className="silk-bg">
         {theme === "dark"?
         <Silk
+          
           key={theme}   // <- forces full remount
           speed={5}
           scale={1}
