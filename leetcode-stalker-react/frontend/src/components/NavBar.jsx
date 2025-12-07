@@ -72,7 +72,7 @@ export default function Navbar({
             onClick={toggleTheme}
             className="theme-toggle"
           >
-            {theme === "light" ? "🌙" : "☀️"}
+            {theme === "light" ? "⏾" : "✹"}
           </button>
 
           <Logout handleLogin={handleLogin} handleLogout={handleLogout} token={isLoggedIn} updateView={updateView} />

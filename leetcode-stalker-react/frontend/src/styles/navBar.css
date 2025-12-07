@@ -103,3 +103,34 @@
 .navbar-title {
   color: var(--nav-text) !important;
 }
+
+
+/* Theme toggle button styling */
+.theme-toggle {
+  background: var(--nav-bg);
+  color: var(--nav-text);
+  border: 2px solid var(--nav-border);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* spacing between theme button & logout */
+  margin-right: 15px;
+}
+
+/* Hover effect */
+.theme-toggle:hover {
+  background: var(--nav-border);
+  color: var(--nav-text);
+  transform: scale(1.05);
+}
+
+/* Active click effect */
+.theme-toggle:active {
+  transform: scale(0.92);
+}
