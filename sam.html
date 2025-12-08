@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codeforces API Test</title>
+
+    <!-- Axios globally -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <script>
+      const CODEFORCES_API = "https://codeforces.com/api";
+
+      async function CodeforcesDataFetcher(handle) {
+        console.log("Fetching data for:", handle);
+
+        try {
+          /* ---------------- USER INFO ---------------- */
+          const userInfoRes = await axios.get(
+            `${CODEFORCES_API}/user.info?handles=${handle}`
+          );
+
+          console.log("User Info Response:", userInfoRes.data);
+
+          const user = userInfoRes.data.result[0];
+          const rating = user.rating || null;
+          const rank = user.rank || null;
+          const maxRating = user.maxRating || null;
+
+          /* ---------------- SUBMISSIONS ---------------- */
+          const submissionsRes = await axios.get(
+            `${CODEFORCES_API}/user.status?handle=${handle}`
+          );
+
+          console.log("Submissions Response:", submissionsRes.data);
+
+          const submissions = submissionsRes.data.result;
+          const solvedSet = new Set();
+
+          submissions.forEach((sub) => {
+            if (sub.verdict === "OK") {
+              const key = `${sub.problem.contestId}-${sub.problem.index}`;
+              solvedSet.add(key);
+            }
+          });
+
+          const totalSolved = solvedSet.size;
+
+          /* ---------------- PROBLEMSET ---------------- */
+          const problemsRes = await axios.get(
+            `${CODEFORCES_API}/problemset.problems`
+          );
+
+          console.log("Problemset example:", problemsRes.data.result.problems[0]);
+
+          return {
+            handle,
+            totalSolved,
+            rating,
+            rank,
+            maxRating,
+          };
+        } catch (err) {
+          console.error("ERROR:", err);
+        }
+      }
+
+      // ---- Run test ----
+      CodeforcesDataFetcher("srishanth_4125").then((data) => {
+        console.log("Final Result:", data);
+      });
+    </script>
+  </body>
+</html>

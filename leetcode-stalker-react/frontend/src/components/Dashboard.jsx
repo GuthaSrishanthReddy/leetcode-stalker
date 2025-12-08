@@ -5,8 +5,10 @@ import RegisterPage from "./RegisterPage.jsx";
 import ErrorBanner from "./ErrorBanner.jsx";
 
 export default function Dashboard({ updateView, globalError, setGlobalError }) {
-  const [profiles, setProfiles] = useState([]);
   const [newUsername, setNewUsername] = useState("");
+  const [leetcodeProfiles, setLeetcodeProfiles] = useState([]);
+  const [codeforcesProfiles, setCodeforcesProfiles] = useState([]);
+
 
   useEffect(() => {
     if (globalError) {
@@ -35,16 +37,18 @@ export default function Dashboard({ updateView, globalError, setGlobalError }) {
         newUsername={newUsername}
         setNewUsername={setNewUsername}
         setGlobalError={setGlobalError}
-        setProfiles={setProfiles}
-      />
+        setLeetcodeProfiles={setLeetcodeProfiles}
+    />
+
 
       {globalError && <ErrorBanner message={globalError} />}
 
       <LeetCodeProfilesTable
-        profiles={profiles}
-        setProfiles={setProfiles}
+        leetcodeProfiles={leetcodeProfiles}
+        setLeetcodeProfiles={setLeetcodeProfiles}
         setGlobalError={setGlobalError}
       />
+
     </div>
   );
 }

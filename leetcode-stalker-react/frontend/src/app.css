@@ -1,5 +1,4 @@
 .light {
-
   --text: #000000;
   --card: #f1f5f9;
   --nav-bg: #f6a80037;
@@ -7,24 +6,23 @@
   --nav-border: #000000;
   --card-bg: #f9fafb;
   --border-color: #e5e7eb;
-  --profilestable-bg: #f9fafb;
+  --LeetCodeProfilesTable-bg: #f9fafb;
   --input-bg: #f9fafb;
   --input-border: #d1d5db;
   --placeholder: #9ca3af;
   --home-bg: #f9fafb;
   --home-title: #111827;
   --home-subtitle: #4b5563;
-  --adduser-bg:#f9fafb;
-  
+  --adduser-bg: #f9fafb;
+
   --button-bg: #000000;
   --button-text: #ffffff;
   --button-hover-bg: #222222;
-  --dashboard-bg:#f9fafb;
-  --tableheader-bg:#f9fafb;
+  --dashboard-bg: #f9fafb;
+  --tableheader-bg: #f9fafb;
 
   --accent-shadow: #f6a80051;
 }
-
 
 .dark {
   --text: #f8fafc;
@@ -35,15 +33,15 @@
   --card-bg: #1e293b;
   --border-color: #334155;
   --input-bg: #0f172a;
-  --profilestable-bg: #1e293b;
+  --LeetCodeProfilesTable-bg: #1e293b;
   --input-border: #475569;
   --placeholder: #94a3b8;
-  --dashboard-bg:#1e293b;
-  --tableheader-bg:#1e293b;
+  --dashboard-bg: #1e293b;
+  --tableheader-bg: #1e293b;
   --home-bg: #0f172a;
   --home-title: #f1f5f9;
   --home-subtitle: #94a3b8;
-  --adduser-bg:#1e293b;
+  --adduser-bg: #1e293b;
 
   --button-bg: #f1f5f9;
   --button-text: #000000;
@@ -51,8 +49,6 @@
 
   --accent-shadow: rgba(203, 213, 225, 0.15);
 }
-
-
 
 /* .light, .dark {
   background: var(--bg);

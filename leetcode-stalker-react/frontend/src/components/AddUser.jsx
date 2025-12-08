@@ -6,7 +6,7 @@ export default function AddUser({
   newUsername,
   setNewUsername,
   setGlobalError,
-  setProfiles,
+  setLeetcodeProfiles,
 }) {
   const buttonRef = useRef(null);
 
@@ -20,7 +20,7 @@ export default function AddUser({
     try {
       const token = localStorage.getItem("token");
       const response = await listProfiles(token);
-      setProfiles(response.data || []);
+      setLeetcodeProfiles(response.data || []);
     } catch (err) {
       console.log(err);
       setGlobalError("Failed to fetch profiles");

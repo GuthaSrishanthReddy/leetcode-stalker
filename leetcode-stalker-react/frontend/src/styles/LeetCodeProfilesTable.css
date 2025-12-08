@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .table-wrapper {
   width: 100%;
   min-height: 800px;
-  background: var(--profilestable-bg) !important;
+  background: var(--LeetCodeProfilesTable-bg) !important;
 }
 
 .table-container {
@@ -82,20 +81,20 @@
   background-color: var(--tableheader-bg) !important;
 }
 
-.easy-count{
-  color: #2ecc71;;
+.easy-count {
+  color: #2ecc71;
 }
 
-.medium-count{
+.medium-count {
   color: #f1c40f;
 }
 
-.hard-count{
-  color:  #e74c3c;
+.hard-count {
+  color: #e74c3c;
 }
 
-.total-count{
-  color : #2007dcbc;
+.total-count {
+  color: #2007dcbc;
 }
 
 .remove-button-container {
@@ -119,7 +118,7 @@
 .remove-button-hover-text {
   display: none;
   position: absolute;
-  left: 110%;              /* place to the right of button */
+  left: 110%; /* place to the right of button */
   top: 50%;
   transform: translateY(-50%);
   background: #000;
@@ -137,4 +136,3 @@
   display: block;
   opacity: 1;
 }
-

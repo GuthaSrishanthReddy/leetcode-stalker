@@ -3,7 +3,12 @@ import "../styles/LeetCodeProfilesTable.css";
 import Loading from "./Loading.jsx";
 import { listProfiles, deleteProfile, refreshProfile } from "../api/leetcode.js";
 
-export default function LeetCodeProfilesTable({ profiles, setProfiles, setGlobalError }) {
+export default function LeetCodeProfilesTable({
+  leetcodeProfiles,
+  setLeetcodeProfiles,
+  setGlobalError
+})
+ {
   const [isLoading, setIsLoading] = useState(true);
 
   async function loadLeetCodeProfiles() {
@@ -11,7 +16,7 @@ export default function LeetCodeProfilesTable({ profiles, setProfiles, setGlobal
       setGlobalError(null);
       const token = localStorage.getItem("token");
       const response = await listProfiles(token);
-      setProfiles(response.data || []);
+      setLeetcodeProfiles(response.data || []);
     } catch (err) {
       console.log(err);
       setGlobalError("Failed to fetch profiles");
@@ -50,13 +55,13 @@ export default function LeetCodeProfilesTable({ profiles, setProfiles, setGlobal
 
   useEffect(() => {
     setIsLoading(false);
-  }, [profiles]);
+  }, [leetcodeProfiles]);
 
   if (isLoading) {
     return <Loading message="Fetching accounts..." />;
   }
 
-  if (profiles.length === 0) {
+  if (leetcodeProfiles.length === 0) {
     return <p>Add a profile to display here!</p>;
   }
 
@@ -80,7 +85,7 @@ export default function LeetCodeProfilesTable({ profiles, setProfiles, setGlobal
             </thead>
 
             <tbody>
-              {profiles.map((profile) => (
+              {leetcodeProfiles.map((profile) => (
                 <tr key={profile.username}>
                   <td className="username">
                     <a
