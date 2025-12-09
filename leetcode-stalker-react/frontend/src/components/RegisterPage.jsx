@@ -57,9 +57,9 @@ function RegisterPage({ onSuccessfulRegister, updateView, theme }) {
         <GridScan
           sensitivity={0.55}
           lineThickness={1}
-          linesColor="#392e4e"
+          linesColor="#ffffff"
           gridScale={0.1}
-          scanColor="#FF9FFC"
+          scanColor="#000000"
           scanOpacity={0.4}
           enablePost
           bloomIntensity={0.6}
