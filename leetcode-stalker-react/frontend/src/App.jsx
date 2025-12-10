@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+
 import LoginPage from "./components/LoginPage.jsx";
 import RegisterPage from "./components/RegisterPage.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Navbar from "./components/NavBar.jsx";
 import Home from "./components/Home.jsx";
 import ErrorBanner from "./components/ErrorBanner.jsx";
+
 import { loginUser } from "./api/auth.js";
-import "./app.css"
+import "./app.css";
 
 function App() {
-  const [view, setView] = useState(localStorage.getItem("view") || "home");
+  const navigate = useNavigate();
+
+  // ERROR SYSTEM
   const [globalError, setGlobalError] = useState(null);
 
-  // THEME
+  // THEME SYSTEM
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   function toggleTheme() {
@@ -21,19 +26,19 @@ function App() {
     localStorage.setItem("theme", next);
   }
 
-  function updateView(viewName) {
-    setView(viewName);
-    localStorage.setItem("view", viewName);
-  }
-
+  // LOGIN HANDLER
   async function handleLogin(email, password) {
     try {
       setGlobalError(null);
+
       const response = await loginUser(email, password);
       const { token } = response.data;
 
+      const extractedUser = email.split("@")[0];
       localStorage.setItem("token", token);
-      updateView("dashboard");
+      localStorage.setItem("username", extractedUser);
+
+      navigate("/dashboard");
     } catch (err) {
       setGlobalError(err?.response?.data?.message || "Login failed");
     }
@@ -41,7 +46,7 @@ function App() {
 
   function handleLogout() {
     localStorage.removeItem("token");
-    updateView("login");
+    navigate("/login");
   }
 
   return (
@@ -50,40 +55,48 @@ function App() {
         isLoggedIn={!!localStorage.getItem("token")}
         handleLogout={handleLogout}
         handleLogin={handleLogin}
-        updateView={updateView}
         toggleTheme={toggleTheme}
         theme={theme}
-        view={view}
       />
 
       <ErrorBanner message={globalError} />
 
-      {view === "home" && <Home />}
-      {view === "login" && (
-        <LoginPage
-          onLogin={handleLogin}
-          error={globalError}
-          updateView={updateView}
-          theme={theme}
-        />
-      )}
+      <Routes>
+        {/* HOME */}
+        <Route path="/" element={<Home />} />
 
-      {view === "dashboard" && (
-        <Dashboard
-          setGlobalError={setGlobalError}
-          globalError={globalError}
-          updateView={updateView}
-          theme={theme}
+        {/* LOGIN */}
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              onLogin={handleLogin}
+              error={globalError}
+              theme={theme}
+            />
+          }
         />
-      )}
 
-      {view === "register" && (
-        <RegisterPage
-          onSuccessfulRegister={() => updateView("login")}
-          updateView={updateView}
-          theme={theme}
+        {/* REGISTER */}
+        <Route
+          path="/register"
+          element={
+            <RegisterPage
+              onSuccessfulRegister={() => navigate("/login")}
+              theme={theme}
+            />
+          }
         />
-      )}
+
+        {/* DASHBOARD (Protected) */}
+        <Route
+          path="/dashboard"
+          element={<Dashboard theme={theme} globalError={globalError} setGlobalError={setGlobalError} />}
+        />
+
+        {/* Catch-all */}
+        <Route path="*" element={<Home />} />
+      </Routes>
     </div>
   );
 }

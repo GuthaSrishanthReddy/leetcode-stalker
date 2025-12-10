@@ -2,16 +2,16 @@ import { useState } from "react";
 import "../styles/NavBar.css"; 
 import logo from "../assets/LeetCode_logo.png"; 
 import Logout from "./logout.jsx";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Navbar({
   isLoggedIn,
   handleLogout,
   handleLogin,
-  updateView,
   toggleTheme,
   theme
 }) {
-
+  const Navigate = useNavigate()
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
@@ -24,7 +24,7 @@ export default function Navbar({
             className="navbar-brand"
             onClick={(e) => {
               e.preventDefault();
-              updateView("home");
+              Navigate("/home");
             }}
           >
             <img className="navbar-logo" src={logo} alt="Logo" />
@@ -49,8 +49,8 @@ export default function Navbar({
             </button>
 
             <div className={`dropdown-panel ${openMenu ? "open" : ""}`}>
-              <a onClick={() => updateView("dashboard")}>LeetCode Dashboard</a>
-              <a onClick={() => updateView("dashboard")}>CodeForces Dashboard</a>
+              <a onClick={() => Navigate("/dashboard")}>LeetCode Dashboard</a>
+              <a onClick={() => Navigate("/dashboard")}>CodeForces Dashboard</a>
             </div>
           </div>
 
@@ -65,11 +65,11 @@ export default function Navbar({
             handleLogin={handleLogin}
             handleLogout={handleLogout}
             token={isLoggedIn}
-            updateView={updateView}
           />
         </div>
 
       </nav>
     </header>
   );
+
 }

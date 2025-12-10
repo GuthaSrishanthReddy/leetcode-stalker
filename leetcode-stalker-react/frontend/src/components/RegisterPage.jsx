@@ -3,14 +3,16 @@ import "../styles/registerPage.css";
 // import { registerUser } from "../api/auth.js";
 import Silk from './Silk';
 import { GridScan } from "./GridScan";
+import { useNavigate } from "react-router-dom";
 
 
-function RegisterPage({ onSuccessfulRegister, updateView, theme }) {
+function RegisterPage({ onSuccessfulRegister, theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
+  const Navigate = useNavigate()
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -137,7 +139,7 @@ function RegisterPage({ onSuccessfulRegister, updateView, theme }) {
             className="login-title"
             onClick={(e) => {
               e.preventDefault();
-              updateView("login");
+              Navigate("/login");
             }}
           >
             Login here.

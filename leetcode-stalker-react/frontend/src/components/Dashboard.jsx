@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import AddUser from "./AddUser.jsx";
 import RegisterPage from "./RegisterPage.jsx";
 import ErrorBanner from "./ErrorBanner.jsx";
+import { Navigate } from "react-router-dom";
 
-export default function Dashboard({ updateView, globalError, setGlobalError }) {
+export default function Dashboard({ theme, globalError, setGlobalError }) {
   const [newUsername, setNewUsername] = useState("");
   const [leetcodeProfiles, setLeetcodeProfiles] = useState([]);
   const [codeforcesProfiles, setCodeforcesProfiles] = useState([]);
@@ -19,7 +20,7 @@ export default function Dashboard({ updateView, globalError, setGlobalError }) {
 
   const token = localStorage.getItem("token");
   if (!token) {
-    return <RegisterPage onSuccessfulRegister={() => updateView("login")} />;
+    return <RegisterPage onSuccessfulRegister={() => Navigate("/login")} />;
   }
 
   return (

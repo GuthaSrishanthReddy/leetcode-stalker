@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "../styles/loginPage.css";
 import Silk from "./Silk";
 import { GridScan } from "./GridScan";
+import { Navigate, useNavigate } from "react-router-dom";
 
-function LoginPage({ onLogin, error, updateView, theme }) {
+function LoginPage({ onLogin, error, theme }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const Navigate = useNavigate()
   function handleSubmit(e) {
     e.preventDefault();
     onLogin(email, password);
@@ -86,7 +87,7 @@ function LoginPage({ onLogin, error, updateView, theme }) {
 
         <div className="switch-page">
           Don’t have an account?
-          <a onClick={() => updateView("register")}> Register here.</a>
+          <a onClick={() => Navigate("/register")}> Register here.</a>
         </div>
       </div>
     </div>
