@@ -41,16 +41,9 @@ export default function Navbar({
               onMouseLeave={() => setOpenMenu(false)}
             >
 
-            <button
-              className="menu-trigger"
-              onClick={() => setOpenMenu(!openMenu)}
-            >
-              Dashboard
-            </button>
-
+            <a onClick={() => Navigate("/dashboard")}>LeetCode Dashboard</a>
+            <a onClick={() => Navigate("/dashboard")}>CodeForces Dashboard</a>
             <div className={`dropdown-panel ${openMenu ? "open" : ""}`}>
-              <a onClick={() => Navigate("/dashboard")}>LeetCode Dashboard</a>
-              <a onClick={() => Navigate("/dashboard")}>CodeForces Dashboard</a>
             </div>
           </div>
 

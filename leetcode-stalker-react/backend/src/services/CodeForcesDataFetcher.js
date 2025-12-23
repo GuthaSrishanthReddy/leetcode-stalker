@@ -3,7 +3,6 @@ import axios from "axios";
 const CODEFORCES_API = "https://codeforces.com/api";
 
 async function getUserSolvedProblemsWithTags(handle) {
-
   const submissionsRes = await axios.get(
     `${CODEFORCES_API}/user.status?handle=${handle}`
   );
@@ -15,22 +14,20 @@ async function getUserSolvedProblemsWithTags(handle) {
   const result = {};
   const seen = new Set();
 
-  submissions.forEach(sub => {
+  submissions.forEach((sub) => {
     if (sub.verdict === "OK") {
       const key = `${sub.problem.contestId}-${sub.problem.index}`;
 
       if (!seen.has(key)) {
         seen.add(key);
 
-        result[sub.problem.name] = sub.problem.tags;  
+        result[sub.problem.name] = sub.problem.tags;
       }
     }
   });
 
   return result;
 }
-
-
 
 export default async function CodeforcesDataFetcher(handle) {
   try {
@@ -72,6 +69,7 @@ export default async function CodeforcesDataFetcher(handle) {
       rating,
       rank,
       maxRating,
+      problems_with_tags: await getUserSolvedProblemsWithTags(handle),
     };
   } catch (err) {
     return null;
