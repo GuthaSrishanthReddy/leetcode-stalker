@@ -38,7 +38,7 @@
   --placeholder: #94a3b8;
   --dashboard-bg: #1e293b;
   --tableheader-bg: #1e293b;
-  --home-bg: #0f172a;
+  --home-bg: #1e293b;
   --home-title: #f1f5f9;
   --home-subtitle: #94a3b8;
   --adduser-bg: #1e293b;
@@ -62,4 +62,14 @@
 .table-wrapper {
   background: var(--card);
   color: var(--text);
+}
+
+/* Apply theme background ONLY for home */
+.light .home-page,
+.dark .home-page {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--home-bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
 }

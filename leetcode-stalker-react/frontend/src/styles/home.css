@@ -1,25 +1,29 @@
 .home-container {
-  height: calc(100vh - 80px); /* Leaves space for navbar */
+  min-height: calc(100vh - 80px); /* safer than height */
   width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   text-align: center;
-  background: var(--home-bg) !important;
+  background: var(--home-bg);
   padding: 20px;
+
+  box-sizing: border-box;
 }
 
 .home-title {
   font-size: 48px;
   font-weight: 700;
-  color: var(--home-title) !important;
+  color: var(--home-title);
   margin-bottom: 10px;
 }
 
 .home-subtitle {
   font-size: 18px;
-  color: var(--home-subtitle) !important;
-  max-width: 400px;
+  color: var(--home-subtitle);
+  max-width: 420px;
   line-height: 1.6;
 }
